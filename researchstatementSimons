@@ -1,0 +1,95 @@
+\documentclass[11pt,reqno,oneside]{article}
+% \documentclass[12pt, final]{siamonline171218}
+% \usepackage[pdfborder={0 0 0.5 [3 2]}]{hyperref}%
+\usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}%
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{enumerate}
+\usepackage{float}
+\usepackage{bm}
+\usepackage[stable]{footmisc}
+
+\usepackage{packages}
+\usepackage{wrapfig}
+\usepackage{subfigure}
+\usepackage[font=footnotesize]{caption}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\def\noi{\noindent}
+\def\T{{\mathbb T}}
+\def\R{{\mathbb R}}
+\def\N{{\mathbb N}}
+\def\Z{{\mathbb Z}}
+\def\C{{\mathbb C}}
+\def\Q{\mathbb{Q}}
+
+\newcommand{\vK}{\bm{\mathit{K}}}
+\newcommand{\calP}{\mathcal{P}}
+\newcommand{\calA}{\mathcal{A}}
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+\renewcommand{\baselinestretch}{1.1}
+
+\title{Research Statement}
+\date{\vspace{-12ex}}
+
+\begin{document}
+
+\thispagestyle{empty}
+
+% \maketitle
+
+\subsection*{Scientific Summary}
+
+My main research interest is in nonlinear waves and coherent structures. In particular, I study solitary waves, which are localized disturbances in a medium that maintain their shape as they propagate at a constant velocity. Although solitary waves were originally discovered as a water wave phenomenon, they have applications in many fields such as fiber optics, plasma physics, quantum mechanics, molecular biology, and neuroscience. More generally, many nonlinear, dispersive PDEs exhibit solitary wave solutions. In particular, I study the existence and stability of multi-pulse solitary waves in Hamiltonian systems. These systems are characterized by a conserved quantity, such as energy, that remains constant as the system evolves in time. The prototypical nonlinear wave equation has a primary solitary wave solution, which looks like a single localized ``bump''. A multi-pulse is a ``multi-bump'' solitary wave which resembles multiple, well separated copies of the primary solitary wave. The entire multi-pulse travels as a unit and maintains its shape unless perturbed. In addition to having applications in nonlinear optics and neuroscience, multi-pulses are interesting mathematically. In my research, I explore the stability of these multi-pulse structures. A crucial step in this process is determining the spectrum of the linearization of the underlying system about a multi-pulse solution. When a multi-pulse structure is perturbed, interactions between the individual pulses are revealed, which are a consequence of the inherent nonlinearity of the system. The dynamics of these interactions are determined by the eigenvalues of the linearization and their corresponding eigenfunctions.
+
+\subsection*{Research Program}
+
+Three specific examples of Hamiltonian equations I study are
+\begin{align*}
+\partial_t u - \partial_x^5 u + \partial_x^3 u + 2 u \partial_x u &= 0 && \text{fifth-order Korteweg de-Vries equation} \\
+\partial_t^2 u + \partial_x^4 u + \mathrm{e}^{u-1} - 1 &= 0 &&\text{Chen-McKenna suspension bridge equation} \\
+i\partial_t u_n + d(u_{n+1} - 2 u_n + u_{n-1}) + |u_n|^2 u_n &= 0 &&\text{discrete nonlinear Schr{\"o}dinger equation}
+\end{align*}
+The fifth-order Korteweg de-Vries equation (KdV5) is a weakly nonlinear long wave approximation to the capillary-gravity wave problem which also has applications to plasma physics and laser optics \cite{Pelinovsky2007}. The Chen-McKenna suspension bridge equation is a smooth approximation to a model for waves propagating on an infinitely long suspended beam, and is motivated by observations of traveling waves on suspension bridges \cite{Chen1997}. The discrete nonlinear Schr{\"o}dinger equation (DNLS) is an analogue to the nonlinear Schr{\"o}dinger equation on the integer lattice, and has applications to nonlinear optics and condensed matter physics \cite{Kevrekidis2009}. The parameter $d$ quantifies the coupling between adjacent lattice nodes. For KdV5 and Chen-McKenna, the primary solitary wave is a traveling wave $u(x, t) = \phi(x - ct)$, where $c$ is the wavespeed \cite{Pelinovsky2007, Chen1997}. For DNLS, the primary solitary wave is a rotating wave $u_n = e^{i\omega t}\phi_n$, where $\omega$ is the rotational frequency \cite{Kevrekidis2009}. 
+
+My primary mathematical approach comes from spatial dynamics. From this viewpoint, a solitary wave is a homoclinic orbit which evolves in the spatial variable, which is $x$ for KdV5 and Chen-McKenna and the integer lattice index $n$ for DNLS. The rest state of the system is a saddle point equilibrium at 0, and the primary solitary wave is  a homoclinic orbit which lies in the intersection of the stable and unstable manifolds of this equilibrium. Multi-pulses are multi-loop homoclinic orbits which remain close to the primary homoclinic orbit in phase space. I construct these multi-pulses using Lin's method, an implementation of the Lyapunov-Schmidt reduction. Heuristically, this involves gluing together multiple copies of the primary homoclinic orbit end-to-end using small remainder functions.
+
+\begin{figure}
+\centering
+\begin{tabular}{ccc}
+\includegraphics[width=4cm]{chen1.eps} &
+\includegraphics[width=4cm]{dnls2unstable.eps} &
+\includegraphics[width=4cm]{unstableeigpattern.eps} \\
+\includegraphics[width=4cm]{chen2.eps} &
+\includegraphics[width=4cm]{dnls2stable.eps} &
+\includegraphics[width=4cm]{stableeigpattern.eps} 
+\end{tabular}
+\caption{First two double pulses for Chen-McKenna, corresponding to integers 0 and 1 (left). In-phase and out-of-phase double pulses for DNLS (center). Corresponding eigenvalue pattern (right).}
+\label{fig:eigpatterns}
+\end{figure}
+
+Multi-pulse solutions to KdV5, Chen-McKenna, and DNLS exist for appropriate values of $c$ and $\omega$. In all cases, however, these multi-pulses must obey geometric constraint imposed by the system. For KdV5 and Chen-McKenna, multi-pulses can only exist when the individual peaks in the structure are separated by an integer multiple of a phase parameter plus a constant (\cref{fig:eigpatterns}, left). This constraint is a consequence of a specific alignment of the stable and unstable manifolds which is a necessary condition for multi-pulses to occur, and these integers represent the number of twists made by the manifolds near the equilibrium at 0 \cite{Sandstede1998}. For DNLS, multi-pulses can only exist when the the phase differences between consecutive peaks are 0 (in-phase) or $\pi$ (out-of-phase) (\cref{fig:eigpatterns}, center). I prove that this result holds for any value of the coupling parameter $d$ as long as the individual peaks are sufficiently well separated \cite{Parker2020}.
+
+The main focus of my research involves determining the spectrum associated with the linearization of the underlying system about a multi-pulse solution. In general, each pulse that is added to a multi-pulse structure yields one or more eigenvalues in the spectrum. I refer to these as interaction eigenvalues, since they result from nonlinear interactions between neighboring pulses. For a large class of systems, which includes reaction-diffusion systems, this problem is solved in \cite{Sandstede1998}. The systems I study are Hamiltonian, which are not covered by these results. On one hand, the Hamiltonian structure is very helpful, since all eigenvalues must come in quartets of the form $\pm \alpha \pm \beta i$. On the other hand, the presence of any eigenvalue with nonzero real part implies that there is an unstable eigenvalue. This means that Hamiltonian systems cannot be dissipative, which makes stability analysis more difficult. 
+
+The spectral pattern of the interaction eigenvalues is determined by the geometry of the multi-pulse (\cref{fig:eigpatterns}, right). For DNLS, I prove that multi-pulses are unstable unless all of the phase differences between neighboring peaks are $\pi$ (out-of-phase), in which case all of the interaction eigenvalues are imaginary \cite{Parker2020}. The proof uses Lin's method to construct the eigenfunctions associated with the interaction eigenvalues, which reduces the spectral problem to finding the eigenvalues of a matrix. For Chen-McKenna, I prove that the eigenvalue pattern is determined by the integer multiples used in the construction of the multi-pulse \cite{Kapitula2020}. Multi-pulses are unstable unless all of the integers are odd, in which case all of the interaction eigenvalues are again imaginary. The proof uses the Krein matrix, which is a projection of an eigenvalue problem onto a finite dimensional subspace. I have also looked at a 4th order NLS equation, where I prove that multi-pulses exist, but are all unstable due to the presence of an eigenvalue with positive real part \cite{Parker2020NLS4}. Ongoing research includes studying other systems in which complex patterns are constructed from simple building blocks; examples include  kink-antikinks and multi-site breathers in Klein-Gordon lattices.
+
+For KdV5, the spectral problem is complicated by the presence of the essential spectrum on the entire imaginary axis. Any purely imaginary eigenvalues would  be embedded in the essential spectrum. To circumvent this problem, I look at multi-pulse solutions on a periodic domain. From a spatial dynamics perspective, these are multi-loop periodic orbits which remain close to the primary homoclinic orbit. The advantage of looking at periodic solutions is that the essential spectrum becomes a discrete set of purely imaginary eigenvalues; interaction eigenvalues can lie within gaps in the essential spectrum. Using Lin's method, I am able to locate both the interaction eigenvalues and essential spectrum eigenvalues by reducing the spectral problem to solving a block matrix equation \cite{ParkerKdV}. It follows from this reduction that as the period of the orbit increases, an essential spectrum eigenvalue and an interaction eigenvalue will collide on the imaginary axis, forming a brief instability bubble. These bubbles can be located numerically by parameter continuation with the software package AUTO, and their location and size agree with that predicted by the theory \cite{ParkerKdV}. Future research includes characterizing the effect of these instability bubbles on the PDE dynamics. 
+
+\bibliographystyle{amsplain}
+\footnotesize{ \bibliography{researchstatement.bib} }
+
+\end{document}

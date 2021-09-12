@@ -1,0 +1,44 @@
+% DNLS stuff
+
+load DNLS;
+ms = 40;
+fontSize=20;
+
+%% primary pulse
+
+figure('DefaultAxesFontSize',fontSize);
+set(gca,'fontname','times');
+set(groot,'defaultAxesTickLabelInterpreter','latex');  
+set(groot,'defaulttextinterpreter','latex');
+set(groot,'defaultLegendInterpreter','latex');
+
+hold on;
+plot(x,u1,'-k','LineWidth',2);
+plot(x,u1,'.b','MarkerSize',ms);
+axis([-10,10,-0.1,1.5]);
+
+%% primary pulse
+
+figure('DefaultAxesFontSize',fontSize);
+set(gca,'fontname','times');
+set(groot,'defaultAxesTickLabelInterpreter','latex');  
+set(groot,'defaulttextinterpreter','latex');
+set(groot,'defaultLegendInterpreter','latex');
+
+hold on;
+plot(x,u1,'-k','LineWidth',2);
+plot(x,u1,'.b','MarkerSize',ms);
+axis([-10,10,-0.1,1.5]);
+
+%% primary pulse
+
+figure('DefaultAxesFontSize',fontSize);
+set(gca,'fontname','times');
+set(groot,'defaultAxesTickLabelInterpreter','latex');  
+set(groot,'defaulttextinterpreter','latex');
+set(groot,'defaultLegendInterpreter','latex');
+
+hold on;
+plot(x,u1,'-k','LineWidth',2);
+plot(x,u1,'.b','MarkerSize',ms);
+axis([-10,10,-0.1,1.5]);

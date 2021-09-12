@@ -1,7 +1,7 @@
 \documentclass[12pt,reqno,oneside]{article}
 % \documentclass[12pt, final]{siamonline171218}
 % \usepackage[pdfborder={0 0 0.5 [3 2]}]{hyperref}%
-\usepackage[left=1in,right=1in,top=1in,bottom=1.25in]{geometry}%
+\usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}%
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
@@ -16,15 +16,15 @@
 \usepackage{subfigure}
 \usepackage[font=footnotesize]{caption}
 
-\newtheorem{theorem}{Theorem}
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{corollary}{Corollary}
+% \newtheorem{theorem}{Theorem}
+% \newtheorem{lemma}[theorem]{Lemma}
+% \newtheorem{corollary}{Corollary}
 
-\theoremstyle{definition}
-\newtheorem{definition}[theorem]{Definition}
+% \theoremstyle{definition}
+% \newtheorem{definition}[theorem]{Definition}
 
-\theoremstyle{remark}
-\newtheorem{remark}[theorem]{Remark}
+% \theoremstyle{remark}
+% \newtheorem{remark}[theorem]{Remark}
 
 \def\noi{\noindent}
 \def\T{{\mathbb T}}
@@ -49,158 +49,205 @@
 
 \thispagestyle{empty}
 
-\maketitle
+\section*{Scientific Summary}
 
-My main research interest is in nonlinear waves and coherent structures. Examples of coherent structures include solitary waves, which are localized disturbances that maintain their shape as they propagate through a medium at a constant velocity, and breathers, which are localized, oscillatory patterns. In particular, I am interested in applications to nonlinear optics and pattern formation on lattices and networks.
+My main research focus is on coherent structures in dynamical systems. Dynamical systems are mathematical models which evolve in time. A prototypical example is a model of a swinging pendulum, which is an ordinary differential equation (ODE) describing the evolution of the angular position and angular velocity of the system. The class of dynamical systems I study is nonlinear wave equations, which are typically expressed mathematically as partial differential equations (PDEs). These equations describe the time evolution of a function representing a wave profile. In particular, I study coherent structures in Hamiltonian systems. 
+Hamiltonian systems are characterized by a conserved quantity, such as energy, that remains constant as the system evolves in time. Coherent structures are spatial patterns which maintain their shape as the system evolves in time. Examples of coherent structures include solitary waves, localized disturbances that maintain their shape as they propagate at a constant velocity, and wavetrains, periodic disturbances that also propagate at a constant velocity. This has been a topic of interest since the 19th century, when John Scott Russell observed a single, large surface wave on the Edinburgh-Glasgow Union Canal in Scotland which propagated along the canal undisturbed for a few miles before eventually decaying. This phenomenon was explained mathematically by the Korteweg–De Vries (KdV) equation 
+\[
+u_t + u_{xxx} + 6 u u_x = 0,
+\]
+which has both solitary wave and wavetrain solutions.
+\begin{figure}[H]
+    \centering
+    \begin{tabular}{cc}
+        \includegraphics[width=7cm]{images/SolitaryWaveHawaii.png} &
+        \includegraphics[width=7cm]{images/cnoidalwaves.png} 
+        % \includegraphics[width=7cm]{images/kdvsoliton.png} &
+        % \includegraphics[width=7cm]{images/kdvcn.png}      
+    \end{tabular}
+    \caption{Solitary wave off the coast of Hawaii \cite{Andriopoulos2009} (left). Periodic wavetrain off the coast of Panama (right, from National Geographic, 1933) }
+    \label{fig:solitarywaves}
+\end{figure}
+Although solitary waves were originally discovered as a water wave phenomenon, they have applications in many fields such as fiber optics, plasma physics, quantum mechanics, molecular biology, and neuroscience. More generally, many nonlinear, dispersive PDEs exhibit solitary wave solutions. 
 
-\section{Multi-pulse solitary waves}
+\section*{Multi-pulse solitary waves}
 
-Solitary waves were originally discovered as a water wave phenomenon, but they have applications in diverse fields such as fiber optics, plasma physics, and quantum mechanics; they can also be used for models in biology and neuroscience. More generally, many nonlinear, dispersive PDEs have solitary wave solutions. In particular, I study the existence and stability of multi-pulse solitary waves in Hamiltonian systems. Multi-pulses are disturbances which resemble multiple, well separated copies of a single solitary wave. In addition to having applications to fields such as nonlinear optics and neuroscience \cite{Evans1982}, multi-pulses are interesting mathematically. Since a multi-pulse structure maintains its shape as it is transmitted, it may appear at first glance that the individual pulses do not interact. The underlying dynamics, however, is inherently nonlinear, and the interaction between the pulses is revealed when we perturb the structure. I am interested in how the spectral properties of these multi-pulses can explain how they react to perturbations.
+The prototypical nonlinear wave equation has a primary solitary wave solution, also known as a pulse solution, which looks like a single localized ``bump''. In many systems, multi-pulse solutions exist. These are ``multi-bump'' solitary wave which resembles multiple, well separated copies of the primary pulse solution. (Notably, multi-pulse solutions do not exist to the KdV equation). 
+The entire multi-pulse travels as a unit and maintains its shape unless perturbed. In addition to having applications in nonlinear optics and neuroscience, multi-pulses are interesting mathematically. In my research, I explore the existence and stability of these multi-pulse structures. A crucial step in this process is determining the spectrum of the linearization of the underlying system about these multi-pulse solutions. When a multi-pulse is perturbed, interactions between the individual pulses in the structure are revealed, which are a consequence of the inherent nonlinearity of the system. The dynamics of these interactions are determined by the eigenvalues of the linearization and their corresponding eigenfunctions.
 
-\subsection{Mathematical approach}
+\begin{figure}[H]
+    \centering
+    \begin{tabular}{cc}
+        \includegraphics[width=6cm]{images/KdVsolitoneq.png} &
+        \includegraphics[width=6cm]{images/KdVphaseportait.png} 
+    \end{tabular}
+    \caption{Primary solitary wave solution $u(x)$ to the KdV equation. Left panel is plot of $u$ vs $x$. Right panel is plot of $u_x$ vs $u$, showing solitary wave as homoclinic orbit. }
+    \label{fig:kdvpp}
+\end{figure}
 
-My primary mathematical approach comes from spatial dynamics. From this viewpoint, a solitary wave is a homoclinic orbit evolving in the spatial variable. This primary homoclinic orbit is an intersection of the stable and unstable manifolds of an equilibrium point, which represents the rest state of the system. Some spectral properties, such as the essential spectrum, only depend on the rest state. Multi-pulses are multi-loop homoclinic orbits, which can be constructed using Lin's method \cite{Lin2008}, a version of the Lyapunov-Schmidt method used to find solutions which remain near a homoclinic orbit. Heuristically, this process involves gluing together multiple copies of the primary homoclinic orbit. I also use Lin's method to construct periodic orbits and multi-loop periodic orbits. To find eigenvalues associated with multi-pulses, I use two main tools. First, I use Lin's method as in \cite{Sandstede1998} to construct eigenfunctions as perturbations of the eigenfunctions associated with the primary solitary wave. I also use the Krein matrix \cite{Kapitula2013a,Kapitula2020}, which is a projection of an eigenvalue problem onto a finite dimensional subspace.
+My primary mathematical approach comes from spatial dynamics. From this viewpoint, a solitary wave $u(x)$ is a homoclinic orbit evolving in the spatial variable $x$. For example, the solitary wave for the KdV equation which moves with constant speed $c$ is a solution $u(x)$ to $u_{xx} + 3 u^2 - c u = 0$ (\cref{fig:kdvpp}, left panel). This ODE can be written as the two-dimensional dynamical system 
+\[
+\frac{d}{dx}\begin{pmatrix}u\\v\end{pmatrix}
+= \begin{pmatrix}v \\ cu - 3u^2\end{pmatrix}
+\]
+by taking $v = u_x$. From this perspective, the solitary wave is a solution $(u(x), v(x))$ which is a homoclinic orbit connecting the unstable and stable manifolds of the saddle equilibrium at the origin (\cref{fig:kdvpp}, right panel). This equilibrium point represents the rest state of the system. 
 
-In addition to theoretical work, I also use numerical analysis, both to generate hypotheses and to verify theoretical results. For multi-pulses, I start by constructing the primary solitary wave, which either involves parameter continuation from a known solution using the software package AUTO or an energy minimization method such as the string method \cite{Chamard2011} or the mountain pass method \cite{Chen1997}. I then glue together multiple copies of the primary solitary wave and use a Newton solver such as Matlab's \texttt{fsolve} function or a conjugate gradient method to construct a multi-pulse. For the spectrum, I first discretize the problem, usually with a Fourier or polynomial spectral method. I then find the spectrum using a numerical eigenvalue solver. I also use AUTO to study how eigenvalues change as parameters are varied.
+Multi-pulses are multi-loop homoclinic orbits. From a theoretical standpoint, multi-pulses can be constructed using Lin's method \cite{Lin2008}, a version of the Lyapunov-Schmidt method used to find solutions which remain near a homoclinic orbit. Heuristically, this process involves ``gluing together'' multiple copies of the primary pulse solution end-to-end \cref{fig:linsmethod} using small remainder functions. Lin's method can also be used to construct periodic orbits and multi-loop periodic orbits. 
+\begin{figure}
+    \centering
+    \begin{tabular}{cc}
+        \includegraphics[width=6cm]{images/linchen1.png} &
+        \includegraphics[width=6cm]{images/linchen2.png} 
+    \end{tabular}
+    \caption{Cartoon illustrating construction of a double pulse solution using Lin's method. Left panel shows primary pulse solution. Right panel shows two copies of the primary pulse solution (black and blue dotted lines) placed end-to-end. Double pulse solution (red solid line) is close to this.}
+    \label{fig:linsmethod}
+\end{figure}
 
-I work with the following four Hamiltonian equations in my research:
-\begin{align*}
-\partial_t u - \partial_x^5 u + \partial_x^3 u + 2 u \partial_x u &= 0 && \text{fifth-order Korteweg de-Vries equation} \\
-\partial_t^2 u + \partial_x^4 u + \mathrm{e}^{u-1} - 1 &= 0 &&\text{Chen-McKenna suspension bridge equation} \\
-i u_t + \frac{\beta_4}{24}u_{xxxx} - \frac{\beta_2}{2}u_{xx} + \gamma |u|^2 u &= 0 && 
-\text{fourth-order nonlinear Schr{\"o}dinger equation } \\
-i\partial_t u_n + d(u_{n+1} - 2 u_n + u_{n-1}) + |u_n|^2 u_n &= 0 &&\text{discrete nonlinear Schr{\"o}dinger equation}
-\end{align*}
-The fifth-order Korteweg de-Vries equation (KdV5) is a weakly nonlinear long wave approximation to capillary-gravity wave problem which also has applications to plasma physics and laser optics \cite{Pelinovsky2007}. The Chen-McKenna suspension bridge equation is a smooth approximation to a model for waves propagating on an infinitely long suspended beam, and is motivated by observations of traveling waves on suspension bridges \cite{McKenna1990,Chen1997}. The fourth-order nonlinear Schr{\"o}dinger equation (NLS4) is a variant of the nonlinear Schr{\"o}dinger equation (NLS) which was introduced to account for the role of small fourth-order dispersion terms in the propagation of intense laser beams in a bulk medium with Kerr nonlinearity \cite{Karpman2000,Tam2020}. The discrete nonlinear Schr{\"o}dinger equation (DNLS) is the discrete analogue to the nonlinear Schr{\"o}dinger equation and has applications to nonlinear optics and condensed matter physics \cite{Kevrekidis2009}. KdV5 and Chen-McKenna have traveling wave solutions of the form $u(x, t) = \phi(x - ct)$, where $c$ is the wavespeed. NLS4 and DNLS have rotating waves of the form $u = e^{i\omega t}\phi$, where $\omega$ is the rotational frequency. All four equations have primary solitary wave solutions \cite{Pelinovsky2007,Berg2018,Parker2020NLS4,Kevrekidis2009}. For appropriate values of the parameters $c$ and $\omega$, they also have multi-pulse solutions \cite{Buffoni1996,SandstedeStrut,Parker2020NLS4,Parker2020}.
-
-\subsection{Interaction eigenvalues of multi-pulses}
-
-The main focus of my research involves determining the spectrum associated with the linearization about a multi-pulse solution. In general, each pulse that is added to a multi-pulse structure is associated with one or more eigenvalues in the spectrum. I refer to these as interaction eigenvalues, since they result from nonlinear interactions between neighboring pulses. For a large class of systems, this problem is solved in \cite{Sandstede1998}, which reduces the problem of to finding the eigenvalues of a matrix.
+Construction of multi-pulse solutions is constrained by the geometry of the underlying system. In \cref{fig:linsmethod}, for example, multi-pulses only exist when the tail oscillations of the individual pulses match up. Once a multi-pulse has been constructed, the nex
 
 \begin{wrapfigure}[8]{R}{6cm}
-\includegraphics[width=6cm]{images/inteigpattern.eps}
-\caption{Possible interaction eigenvalue patterns.} 
-\label{fig:inteigpattern}
+    \includegraphics[width=6cm]{images/inteigpattern.eps}
+    \caption{Possible interaction eigenvalue patterns.} 
+    \label{fig:inteigpattern}
 \end{wrapfigure}
-The systems I study are Hamiltonian, which are not covered by the results of \cite{Sandstede1998}. On one hand, the Hamiltonian structure is very helpful, since all eigenvalues must come in quartets of the form $\pm \alpha \pm \beta i$. This means that each additional set of interaction eigenvalues must come in one of the three patterns in \cref{fig:inteigpattern}. On the other hand, the presence of any eigenvalue with nonzero real part implies that there is an unstable eigenvalue. This means that Hamiltonian systems cannot be dissipative, which makes stability analysis more difficult. 
+The first step in this process is to analyze the spectrum of the linearization of the underlying system about a multi-pulse solution. In general, each pulse that is added to a multi-pulse structure is associated with one or more eigenvalues in the spectrum \cite{Sandstede1998}. I refer to these as interaction eigenvalues, since they result from nonlinear interactions between the tails of neighboring pulses. The systems I study are Hamiltonian, which are not covered by the results of \cite{Sandstede1998}. On one hand, the Hamiltonian structure is very helpful, since all eigenvalues must come in quartets of the form $\pm \alpha \pm \beta i$. This means that each additional set of interaction eigenvalues must occur in one of the three patterns in \cref{fig:inteigpattern}. On the other hand, the presence of any eigenvalue with nonzero real part implies that there is an unstable eigenvalue. This means that Hamiltonian systems cannot be dissipative, which makes stability analysis more difficult. My main results relate the spectral pattern of the interaction eigenvalues to the underlying geometry of the multi-pulse. In all cases, the spectral pattern is determined by the geometry of the underlying multi-pulse solution. 
 
-My main results relate the spectral pattern of the interaction eigenvalues to the underlying geometry of the multi-pulse. In all cases, the spectral pattern is determined by the geometry of the underlying multi-pulse solution. For the continuous systems (KdV5, Chen-McKenna, and NLS4), multi-pulses exist in discrete families. The distances between neighboring pulses are constrained to be an integer multiple of a phase parameter. This constraint is a consequence of the specific alignment of manifolds necessary for multi-pulses to occur, and these integers represent the number of twists made by the stable and unstable manifolds near the equilibrium at 0. An $m-$pulse, therefore, can be described by $m-1$ nonnegative integers $\{ k_1, \dots, k_{m-1} \}$. For KdV5 \cite{Pelinovsky2007} and Chen-McKenna \cite{Kapitula2020}, the eigenvalue pattern is determined by whether these integers are even or odd. For DNLS, a multi-pulse is constructed from single pulses which can either be in phase or out of phase, and the eigenvalue pattern is determined by these phase differences. See \cref{fig:eigpatterns} for examples of these patterns. For NLS4, all multi-pulses are unstable since there is always an interaction eigenvalue with positive real part \cite{Parker2020NLS4}. 
+In addition to theoretical work, I also use numerical analysis, both to generate hypotheses and to verify analytical results. For multi-pulses, I start by constructing the primary solitary wave, which either involves parameter continuation from a known solution using the software package AUTO or an energy minimization method such as the string method \cite{Chamard2011} or the mountain pass method \cite{Chen1997}. I then glue together multiple copies of the primary solitary wave and use a Newton solver such as Matlab's \texttt{fsolve} function or a conjugate gradient method to construct a multi-pulse.
+
+\subsection*{Discrete nonlinear Schr\"odinger equation}
+
+The discrete nonlinear Schr{\"o}dinger equation (DNLS) 
+\begin{align*}
+    i \partial_t u_n + d(u_{n+1} - 2 u_n + u_{n-1}) + |u_n|^2 u_n && n \in \mathbb{Z}
+\end{align*}
+is the discrete analogue to the nonlinear Schr{\"o}dinger equation (NLS) on the integer lattice. The parameter $d$ quantifies the degree of coupling between adjacent lattice sites. In addition to being a fundamental model of a nonlinear dynamical system on a lattice, DNLS has applications to nonlinear optics and condensed matter physics \cite{Kevrekidis2009}. For all values of $d$, DNLS has a stable, primary pulse solution (\cref{fig:DNLS2p}, left panel). Provided that the individual peaks are separated by a sufficiently large number of lattice points, we prove using Lin's method that multi-pulse solutions exist as long as a geometric constraint is satisfied: neighboring peaks must either be in-phase or out-of-phase \cite{Parker2020}. Furthermore, we prove this geometry determines the stability of multi-pulses. For double pulses, the in-phase double pulse is unstable, since there is eigenvalue with positive real part, and the out-of-phase double pulse is neutrally stable, since the entire spectrum lies on the imaginary axis (see \cref{fig:DNLS2p}). For general multi-pulses, the entire structure is unstable if any pair of neighboring peaks are in-phase. The only neutrally stable multi-pulses are those where every pair of neighboring peaks is out-of-phase. The proof of this result adapts the method of \cite{Sandstede1998} to the Hamiltonian case, and uses Lin's method to construct the eigenfunctions corresponding to the interaction eigenvalues. This reduces the spectral problem for an $n$-pulse to finding the eigenvalues of an $n\times n$ matrix.
 
 \begin{figure}
-\centering
-\begin{tabular}{ccc}
-\includegraphics[width=4cm]{images/dp1.eps} &
-\includegraphics[width=4cm]{images/dnls2unstable.eps} &
-\includegraphics[width=4cm]{images/unstableeigpattern.eps} \\
-\includegraphics[width=4cm]{images/dp2.eps} &
-\includegraphics[width=4cm]{images/dnls2stable.eps} &
-\includegraphics[width=4cm]{images/stableeigpattern.eps} 
-\end{tabular}
-\caption{Double pulses for KdV5 (left) and DNLS (center). Corresponding eigenvalue pattern (right).}
-\label{fig:eigpatterns}
+    \centering
+    \begin{tabular}{ccc}
+        \includegraphics[width=5cm]{images/DNLSprimary.eps} &
+        \includegraphics[width=5cm]{images/DNLSunstable2p.eps} &
+        \includegraphics[width=5cm]{images/DNLSstable2p.eps} 
+    \end{tabular}
+    \caption{Primary pulse solution for DNLS (left). Out-of-phase (middle) and in-phase (right) double pulse solutions for DNLS. Interaction eigenvalue patterns for double pulses are shown in insets. Black dot is a kernel eigenvalue with algebraic multiplicity 2.}
+    \label{fig:DNLS2p}
 \end{figure}
 
-For Chen-McKenna, I have proved these results analytically in \cite{Kapitula2020} using an extension of the Krein matrix. For DNLS, I use Lin's method to extend the stability results of \cite{Kapitula2001,Kapitula2001a} to solutions away from the anti-continuum limit \cite{Parker2020}. For NLS4, I adapt the extension of Lin's method for systems with two continuous symmetries in \cite{Manukian} to Hamiltonian systems in \cite{Parker2020NLS4}. For KdV5, the analysis is complicated by the essential spectrum, which is the entire imaginary axis. Any purely imaginary interaction eigenvalues would be embedded in the essential spectrum. Using an exponentially weighted space, I am able to prove an instability criterion for multi-pulses. For the cases where numerical analysis suggests that there are purely imaginary interaction eigenvalues, I can only prove that they are purely imaginary to leading order. To circumvent this problem, I look at periodic multi-pulse solutions.
 
-\subsection{Periodic multi-pulses}
+\subsection*{Chen-McKenna suspension bridge equation}
 
-\begin{figure}[H]
-\begin{center}
-\includegraphics[width=8cm]{images/DPperiodic.eps} \hspace{-1cm}
-\includegraphics[width=9cm]{images/2pitchforkcoloreig2.eps}
-\end{center}
-\caption{Construction, bifurcation, and spectrum of periodic 2-pulses for KdV5.}
-\label{fig:periodic}
+The Chen-McKenna suspension bridge equation 
+\begin{align*}
+    \partial_t^2 u + \partial_x^4 u + \mathrm{e}^{u-1} - 1 &= 0 
+\end{align*}
+is a smooth approximation to a model for waves propagating on an infinitely long suspended beam, and is motivated by observations of traveling waves on suspension bridges \cite{McKenna1990,Chen1997}. For wave speeds $c$ between 0 and $\sqrt{2}$, a primary solitary wave solution exists \cite{Berg2018}. This solution has exponentially decaying, oscillatory tails (\cref{fig:chen2p}, top left). Provided that the individual peaks are sufficiently well separated, multi-pulse solutions again exist as long as a geometric constraint is satisfied: the tail oscillations of neighboring peaks must be ``overlap'', i.e. must be in-phase (see the cartoon illustration in \cref{fig:linsmethod}). This constraint is a consequence of the specific alignment of the unstable and stable manifolds which is necessary for multi-pulses to occur. As a result, the distance between consecutive peaks is, to leading order, an integer multiple of a phase parameter. This is illustrated in the top right panel of \cref{fig:chen2p}, which plots the first four double pulse solutions on the same graph. As with DNLS, the stability of multi-pulses depends on their geometry. Double pulses, for example, alternate between unstable (bottom left of \cref{fig:chen2p}, corresponding to even integers) and neutrally stable (bottom right of \cref{fig:chen2p}, corresponding to odd integers). I proved these spectral results using an extension of the Krein matrix \cite{Kapitula2020}, a tool which projects the infinite-dimensional spectral problem onto a finite-dimensional space. 
+
+\begin{figure}
+    \centering
+    \begin{tabular}{cc}
+        \includegraphics[width=7cm]{images/chen1p.eps} &
+        \includegraphics[width=7cm]{images/chenDPall.eps} \\
+        \includegraphics[width=7cm]{images/chen2punstable.eps} &
+        \includegraphics[width=7cm]{images/chen2pstable.eps} 
+    \end{tabular}
+    \caption{Primary pulse solution for Chen-Mckenna (top left). First four double pulse solutions (top right). Unstable double pulse for $n=2$ (bottom left) and neutrally stable double pulse for $n=3$ (bottom right). Interaction eigenvalue patterns for double pulses are shown in insets. Black dot is a kernel eigenvalue with algebraic multiplicity 2.}
+    \label{fig:chen2p}
 \end{figure}
 
-A periodic multi-pulse is a periodic orbit which contains multiple peaks. From a spatial dynamics perspective, these are multi-loop periodic orbits which are close to the primary homoclinic orbit. A periodic 2-pulse is constructed by gluing two single pulses together at both ends. Since this construction involves two length parameters $X_0$ and $X_1$ (see \cref{fig:periodic}, left), there is an extra degree of freedom when compared to the 2-pulses on the real line. As a consequence, there is a continuous family of periodic 2-pulses, in which asymmetric periodic 2-pulses ($X_0 \neq X_1$) bifurcate from symmetric periodic 2-pulses ($X_0 = X_1$) a series of pitchfork bifurcations (\cref{fig:periodic}, center) \cite{ParkerKdV}. The advantage of looking at periodic solutions is that the essential spectrum becomes a discrete set of purely imaginary eigenvalues (blue open circles in \cref{fig:periodic}, right). Purely imaginary interaction eigenvalues can then lie in gaps between essential spectrum eigenvalues, which avoids the problem of embedded eigenvalues. 
+\subsection*{Fourth order nonlinear Schr\"odinger equation}
 
-The eigenvalues associated with a periodic multi-pulse can be found by solving a block matrix equation \cite[Theorem 5.3]{ParkerKdV} which, to leading order, is given by
-\begin{equation}\label{blockmatrix}
-\det \begin{pmatrix}
-K(\lambda) - \frac{1}{2} \lambda \tilde{M} K^+(\lambda) & \lambda^2 M_c I \\
--\frac{1}{2} \lambda M_c K^+(\lambda) & A - \lambda^2 MI  
-\end{pmatrix} = 0
-\end{equation}
-The essential spectrum eigenvalues are encoded by the matrix $K(\lambda)$, which, to leading order, only depends on the background state and the periodic domain $[-X, X]$, where $X = X_0 + X_1$. The interaction eigenvalues are encoded by the matrix $A$, which depends on the geometry of the multi-pulse. As long as $X$ is not too large, the interaction eigenvalues and essential spectrum eigenvalues do not interfere with each other. For a periodic 2-pulse, there is a pair of interaction eigenvalues which is either real or purely imaginary depending on the geometry of the periodic 2-pulse (\cref{fig:periodic}, center); the eigenvalue pattern switches between real and imaginary at the pitchfork bifurcation points.  
+The fourth-order nonlinear Schr{\"o}dinger equation (NLS4) 
+\begin{align*}
+    i u_t + \frac{\beta_4}{24}u_{xxxx} - \frac{\beta_2}{2}u_{xx} + \gamma |u|^2 u &= 0 
+\end{align*}
+is a variant of the nonlinear Schr{\"o}dinger equation which was introduced to account for the role of small fourth-order dispersion terms in the propagation of intense laser beams in a bulk medium with Kerr nonlinearity \cite{Karpman2000,Tam2020}. There is particular interest in the case where $\beta_2 = 0$, in which case the system exhibits pure quartic dispersion. The corresponding solitary wave, known as pure quartic solitons, have been created experimentally. In \cite{Parker2020NLS4}, we prove that while multi-pulse solitary wave solutions exist, they unstable to the presence of at least one eigenvalue with positive real part.
 
-There is an additional complication in the periodic case. It is possible to increase $X$ so that an essential spectrum eigenvalue becomes close to an interaction eigenvalue. At a critical value of $X$, there is a collision between one of the essential spectrum eigenvalues and a purely imaginary interaction eigenvalue. As $X$ is further increased, I prove that a brief instability bubble is formed, wherein the two eigenvalues collide, move off the imaginary axis, trace an approximate circle in the complex plane, and recombine on the imaginary axis in a ``reverse''  collision (see \cref{fig:kreinbubble1} for a cartoon) \cite{ParkerKdV}. This instability bubble, which we call a Krein bubble, is a consequence of the block matrix reduction \cref{blockmatrix}. A numerical simulation of the Krein bubble, performed using parameter continuation with AUTO, is shown in \cref{fig:kreinbubble1} (right). The location and size of the Krein bubble in the simulation agree with that predicted by the theory \cite{ParkerKdV}.
+\subsection*{Fifth order KdV equation}
 
-Future work includes running time-stepping simulations for 2-periodic pulses in these Krein bubbles to see what type of instability they cause. In addition, it would be interesting to explore if these Krein bubbles occur for more complex multi-pulse structures, such as triple pulses, and if they occur in other systems.
+The fifth-order Korteweg de-Vries equation (KdV5)
+\begin{align*}
+    \partial_t u - \partial_x^5 u + \partial_x^3 u + 2 u \partial_x u &= 0
+\end{align*} 
+is a weakly nonlinear long wave approximation to capillary-gravity wave problem which also has applications to plasma physics and laser optics \cite{Pelinovsky2007}. Multi-pulse solutions to KdV5 exist \cite{SandstedeStrut}, but their stability analysis is complicated due to the fact that the essential spectrum for all localized solutions comprises the entire imaginary axis. In particular, this means that any purely imaginary interaction eigenvalues would be embedded in the essential spectrum, which makes the analysis difficult.
 
+To simplify the situation I impose periodic boundary conditions on the problem and look at periodic multi-pulses, which are periodic orbits containing multiple peaks. From a spatial dynamics perspective, a periodic multi-pulse is a multi-loop periodic orbit which is close to the primary homoclinic orbit. A periodic double pulse, for example, is constructed by gluing two single pulses together at both ends. Since this construction involves two length parameters $X_0$ and $X_1$ (see \cref{fig:periodic}, left), there is an extra degree of freedom when compared to double pulses on the real line. As a consequence, I prove that periodic double pulses exist in a continuous family in which asymmetric periodic double pulses (those with $X_0 \neq X_1$) bifurcate from symmetric periodic 2-pulses (those with $X_0 = X_1$) in a series of pitchfork bifurcations (\cref{fig:periodic}, center) \cite{ParkerKdV}. The advantage of looking at periodic solutions is that the essential spectrum becomes a discrete set of eigenvalues on the imaginary axis (blue open circles in \cref{fig:periodic}, right). Purely imaginary interaction eigenvalues can then lie in gaps between essential spectrum eigenvalues, which avoids the problem of embedded eigenvalues. 
+\begin{figure}[H]
+    \begin{center}
+    \includegraphics[width=7cm]{images/2pulse3d.png} \hspace{-1cm}
+    \includegraphics[width=9cm]{images/2pitchforkcoloreig2.eps}
+    \end{center}
+    \caption{Construction, bifurcation, and spectrum of periodic 2-pulses for KdV5.}
+    \label{fig:periodic}
+\end{figure}
+    
+The eigenvalues associated with a periodic multi-pulse can be found by solving a block matrix equation \cite[Theorem 5.3]{ParkerKdV} for the eigenvalues $\lambda$. To leading order, this is given by
+    \begin{equation}\label{blockmatrix}
+    \det \begin{pmatrix}
+    K(\lambda) - \frac{1}{2} \lambda \tilde{M} K^+(\lambda) & \lambda^2 M_c I \\
+    -\frac{1}{2} \lambda M_c K^+(\lambda) & A - \lambda^2 MI  
+    \end{pmatrix} = 0.
+    \end{equation}
+The essential spectrum eigenvalues are encoded by the matrix $K(\lambda)$, which only depends on the background state and size of the periodic domain; in particular, it is independent of the periodic multi-pulse solution being studied. The interaction eigenvalues are encoded by the matrix $A$, which depends on the geometry of the periodic multi-pulse. As long as the periodic domain size is not too large, the interaction eigenvalues and essential spectrum eigenvalues do not interfere with each other. For a periodic double pulse, there is a pair of interaction eigenvalues which is either real or purely imaginary depending on the geometry of the periodic 2-pulse (\cref{fig:periodic}, center); the eigenvalue pattern switches between real and imaginary at the pitchfork bifurcation points.  
+    
+There is, however, an additional complication in the periodic case. As the periodic domain size $X$ is increased, the essential spectrum eigenvalues move towards the origin. At a critical value of $X$,  there will be a collision between one of the essential spectrum eigenvalues and a purely imaginary interaction eigenvalue. As $X$ is further increased, I prove that a brief instability bubble is formed, wherein the two eigenvalues collide, move off the imaginary axis, trace an approximate circle in the complex plane, and recombine on the imaginary axis in a ``reverse'' collision (see left panel of \cref{fig:kreinbubble1} for a cartoon) \cite{ParkerKdV}. This instability bubble, which we call a Krein bubble, is a direct consequence of the block matrix reduction \cref{blockmatrix}. A numerical simulation of the Krein bubble, performed using parameter continuation with AUTO, is shown in \cref{fig:kreinbubble1} (right). The location and size of the Krein bubble in the simulation agree with that predicted by the theory \cite{ParkerKdV}.
+    
 \begin{figure}[H]
 \begin{center}
-\begin{tabular}{c}
-\includegraphics[width=0.9\textwidth]{images/KreinBubbleBoth}
+\begin{tabular}{cc}
+\includegraphics[width=8cm]{images/KreinBubbleCartoonSS2.png} & 
+\includegraphics[width=7.5cm]{images/kreinbubble1.eps}
 \end{tabular}
 \end{center}
 \caption{Krein instability bubble cartoon (left) and numerical simulation for KdV5 (right).}
 \label{fig:kreinbubble1}
 \end{figure}
 
-\subsection{Stability of multi-pulses}
+\subsection*{Other systems and future directions}
 
-How is the interaction eigenvalue pattern related to the stability of multi-pulse structures? I study this for KdV5 using numerical time-stepping, beginning with initial conditions with are close to multi-pulse solutions. At each time point, I compute the distance between the two pulses and its derivative, which I call the pulse relative velocity. I then plot trajectories of this reduced, two-dimensional system (\cref{fig:KdV5timestep}, left panel). 
+Other systems of interest include the discrete sine-Gordon equation, nonlocal lattice equations, and equations in higher dimensions. The discrete sine-Gordon equation
+\begin{align*}
+	\ddot{u}_n &= d (\Delta_2 u)_n \pm \sin(u_n) && n \in \mathbb{Z}
+\end{align*}
+was introduced to describe the dynamics of crystal lattices, and has since been used in numerous applications, including a mechanical model for a chain of pendula coupled with elastic springs, arrays of Josephson junctions, and DNA dynamics \cite{braun2004}. A particular class of coherent structures of interest in this system are kinks, which are exponentially localized stationary solutions connect adjacent minima of the potential $V(u) = \cos u$. In \cite{parkerSG}, we prove the existence of stationary multi-kink solutions as well as analyze their spectral stability. Another class of coherent structures for this system are breathers, which are localized, oscillatory patterns. Future work involves using Lin's method to construct multi-site breathers by splicing together multiple, sequential copies of the primary breather and to then analyze their stability.
+
+The following version of DNLS with nonlocal interactions
+\begin{align*}
+    i \partial_t u_n = \frac{1}{h^{2s}} \sum_{m \neq n} \frac{u_m - u_n}{|m - n|^{1+2s}} + |u_n|^2 u_n && n \in \mathbb{Z},
+\end{align*}
+where $s > 0$ is a fixed parameter specifying the decay of the nonlocal interactions, is considered in \cite{Kirkpatrick2013}. They prove that in the continuum limit $h\rightarrow 0$, solutions converge to solutions of an NLS equation with fractional Laplacian. Applications include a model for charge transport in DNA polymers. Future directions include studying whether this system, like the ordinary DNLS equation, possesses solitary wave and multi-pulse solutions, as well as whether the nonlocal interaction term permits other solutions which are not found in DNLS. A final, related area of interest is coherent structures in DNLS on the square integer lattice $\mathbb{Z}^2$. This could include nonlocal interactions in one or both directions.
+
+\section*{Optical lattices}
+
+There has been much recent interest, both by experimental physicists and applied mathematicians, in the propagation dynamics of light pulses through arrays of optical fibers. One particular application is light transmission through multi-core optical fibers. In particular, optical transmission properties can be tuned by introducing a twist to the entire fiber bundle \cite{Longhi2016,CastroCastro2016,Parto2017} (\cref{fig:twist}).
 \begin{figure}[H]
 \begin{center}
 \begin{tabular}{cc}
-\includegraphics[width=7cm]{images/phaseportrait}  &
-\includegraphics[width=7cm]{images/simplephaseportrait}
-\end{tabular}
-\end{center}
-\caption{Phase portrait for peak relative velocity vs. peak distance for time-stepping of KdV5 with initial conditions near the first four double pulses (left panel). Phase portrait of \cref{harmonicvary} (right panel).
-}
-\label{fig:KdV5timestep}
-\end{figure}
-For 2-pulse solutions to KdV5, there are two alternating eigenvalue patterns: unstable (pair of real interaction eigenvalues) and neutrally stable (pair of imaginary interaction eigenvalues). The unstable pattern corresponds to a saddle node; a perturbation near this equilibrium will cause the two pulses to repel each other. The stable pattern corresponds to a center; a perturbation near this equilibrium will cause the two pulses to oscillate about their center of mass. 
-\begin{figure}[H]
-\begin{center}
-\begin{tabular}{cc}
-\includegraphics[width=7cm]{images/waterfallunstable.eps}  &
-\includegraphics[width=7cm]{images/waterfallstable.eps}
-\end{tabular}
-\end{center}
-\caption{Timestepping simulation for perturbation of unstable (left) and stable (right) double pulses for KdV5.}
-\label{fig:KdV5timestep}
-\end{figure}
-The phase portrait resembles that of the planar system \eqref{harmonicvary}, which is a harmonic oscillator with spatially varying restoring force (\cref{fig:KdV5timestep}, right panel).
-\begin{equation}\label{harmonicvary}
-\begin{aligned}
-\dot{x} &= y \\
-\dot{y} &= C e^{-\alpha_0 x} \sin \beta_0 x
-\end{aligned}
-\end{equation} 
-
-\section{Twisted multi-core optical fibers}
-
-There has been much recent interest in the propagation dynamics of light pulses through multi-core optical fibers. In particular, optical transmission properties can be tuned by introducing a twist to the individual fibers in the bundle. A simple example is a circular multi-core fiber \cite{Longhi2016,CastroCastro2016,Parto2017} \cref{fig:twist}.
-\begin{figure}[H]
-\begin{center}
-\begin{tabular}{cc}
-\includegraphics[width=7cm]{images/twist2.png} &
+\includegraphics[width=7.5cm]{images/twist2.png} &
 \includegraphics[width=5cm]{images/twistmulticore.png}
 \end{tabular}
 \end{center}
-\caption{Schematic of circular multi-core fiber \cite{Longhi2016} (left) and twisted multi-core fiber \cite{Parto2017} (right).}
+\caption{Schematic of circular multi-core fiber \cite{Longhi2016} (left) and twisted multi-core fiber with eight waveguides \cite{Parto2017} (right).}
 \label{fig:twist}
 \end{figure}
-The propagation of light through this system can be described by the coupled mode equations
-\begin{equation*}
-i \partial_z c_n = k \left(e^{-i\phi}c_{n+1} + e^{i\phi}c_{n-1}\right) + |c_n|^2 c_n,
-\end{equation*}
-for $n = 1, \dots, N$, where $c_0 = c_{N}$ and $c_{N+1} = c_1$ due to the circular geometry, $k$ is the strength of the nearest-neighbor coupling, and $\phi$ is a parameter representing the twist of the fibers. This equation is Hamiltonian, i.e. energy is conserved. Standing wave solutions $c_n = a_n e^{i (\omega z + \theta_n) }$ exist.  In particular, standing waves where the energy is concentrated at a single site are stable. When the twist parameter and the number of fibers in the bundle are related by $\phi = \pi/N$, the stable standing wave solution has a ``dark node'' with no optical activity opposite the node of maximum intensity \cref{fig:twistcn}. 
+The propagation of light through a system of $N$ waveguides arranged in a circle can be described by the coupled mode equations
+\begin{align*}
+i \partial_z c_n &= k \left(e^{-i\phi}c_{n+1} + e^{i\phi}c_{n-1}\right) + |c_n|^2 c_n &&  n = 1, \dots, N,
+\end{align*}
+ where $c_0 = c_{N}$ and $c_{N+1} = c_1$ due to the circular geometry, $k$ is the strength of the nearest-neighbor coupling, and $\phi$ is a parameter representing the twist of the fiber.  When the twist parameter $\phi$ and the number of fibers in the bundle $N$ are related by $\phi = \pi/N$, we prove that there is a stable standing wave solution of the form $c_n(z) = a_n e^{i \omega z}$ which as a ``dark node'' with no optical activity opposite a ``bright node'' of maximum intensity \cite{ParkerTwist} (\cref{fig:twistcn}). 
 \begin{figure}[H]
 \begin{center}
-\begin{tabular}{c}
-\includegraphics[width=14cm]{images/evenhole6}
+\begin{tabular}{cc}
+\includegraphics[width=8cm]{images/evenholestandingwave.eps} &
+\includegraphics[width=8cm]{images/evenholeamps.eps}
 \end{tabular}
 \end{center}
-\caption{Standing wave solution $c_n$ for twisted multi-core fiber with $N = 6$ and $\phi = pi/6$. Time evolution (left) and magnitude of solution at lattice points (right). Node 1 has maximum intensity, and opposite node 4 has zero intensity.}
+\caption{Standing wave solution $c_n(z)$ for twisted multi-core fiber with $N = 6$ and $\phi = \pi/6$. Evolution of real part of solution of first four sites (left) and magnitude of solution at the six lattice points (right). Node 1 has maximum intensity, and opposite node 4 has zero intensity.}
 \label{fig:twistcn}
 \end{figure}
-Future research involves more complicated arrangements of fiber bundles, such as concentric rings, a Lieb lattice, or a honeycomb lattice \cite{Lumer2013,Marzuola2019}. For some of these geometries, breather solutions have been found, for which the bulk of the energy is confined to a small number of lattice points, but no systematic study of their existence and stability has been done to date.
 
-\bibliographystyle{amsplain}
+Future research involves studying other configurations of optical fibers and which have been employed by experimentalists. One example is a  waveguide consisting of a square lattice of fibers in which there is periodic variations along the waveguide axis. These cause the nearest-neighbor coupling in the lattice to vary periodically, and give rise to periodic breather solutions in which bulk of the optical intensity is confined to a single square in the lattice and ``jumps'' around that square. No systematic mathematical study of the existence and stability of these solutions has been done to date. Other, more complicated arrangements of fibers which are of interest to experimentalists include concentric rings and honeycomb lattices \cite{Lumer2013}.
+
+\bibliographystyle{siam}
 \footnotesize{ \bibliography{researchstatement.bib} }
 
 \end{document}
